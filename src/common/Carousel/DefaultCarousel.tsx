@@ -1,15 +1,58 @@
-import React from 'react'
+import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import SwiperCore, {  Scrollbar, Zoom } from "swiper";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 
+SwiperCore.use([Navigation, Pagination, Scrollbar, Zoom]);
+
+const images = [
+    "https://picsum.photos/200/300?random=1",
+    "https://picsum.photos/200/300?random=2",
+    "https://picsum.photos/200/300?random=3",
+    "https://picsum.photos/200/300?random=4",
+    "https://picsum.photos/200/300?random=5",
+    "https://picsum.photos/200/300?random=6"
+  ];
+
 export const DefaultCarousel = () => {
+    return (
+        <div>
+
+
+            <Swiper
+                spaceBetween={0}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                loop
+                params={{
+                    zoom: {
+                        enabled: true
+                    }
+                }}
+                onSlideChange={() => console.log("slide change")}
+                onSwiper={(swiper) => console.log(swiper)}
+            >
+                {images.map((image, i) => (
+                    <SwiperSlide zoom key={i} className="">
+                        <img src={image} key={i} alt="product" className="rounded-lg" style={{width:"100%"}}/>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+        </div>
+    )
+}
+
+
+
+export const DefaultCarousel1 = () => {
     return (
         <>
          {/* <Swiper
